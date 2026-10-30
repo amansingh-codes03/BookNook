@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Book Catalogue &amp; Store | BookNook</title>
+  <meta name="description" content="Explore our extensive collection of books across Fiction, Non-Fiction, Children's Books, and Stationery at BookNook." />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+</head>
+<body>
+
+  <!-- Injected Shared Header -->
+  <div id="shared-header"></div>
+
+  <!-- Breadcrumb Navigation -->
+  <div class="breadcrumb-bar">
+    <div class="container">
+      <ul class="breadcrumb-list">
+        <li><a href="index.html">Home</a></li>
+        <li class="breadcrumb-separator">&rsaquo;</li>
+        <li class="breadcrumb-current">Book Catalogue</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Page Banner -->
+  <section class="page-header-banner">
+    <div class="container">
+      <h1 class="page-header-title">The BookNook Shelves</h1>
+      <p class="page-header-subtitle">
+        Immerse yourself in our full catalogue. Filter by genre, author, price or rating to discover your next obsession.
+      </p>
+    </div>
+  </section>
+
+  <main class="container">
+    <div class="catalog-layout">
+      <!-- Sidebar Filters (Desktop & Mobile Drawer) -->
+      <aside class="filter-sidebar" id="filterSidebar">
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.5rem; padding-bottom: 0.75rem; border-bottom: 2px solid var(--cream-dark);">
+          <h3 style="font-family: var(--font-serif); font-size: 1.35rem; color: var(--primary-dark);">Filter Shelf</h3>
+          <div style="display: flex; align-items: center; gap: 0.75rem;">
+            <button type="button" class="btn btn-outline btn-sm" id="clearFiltersBtn" style="font-size: 0.78rem;">Reset</button>
+            <button type="button" id="closeFilterDrawerBtn" class="mobile-toggle-btn" aria-label="Close filters" style="display: none;">&times;</button>
+          </div>
+        </div>
+
+        <!-- Filter 1: Categories & Subcategories -->
+        <div class="filter-card">
+          <h4 class="filter-heading">Departments</h4>
+          <div class="filter-list" id="filterCategories">
+            <!-- Injected via filters.js -->
+          </div>
+        </div>
+
+        <!-- Filter 2: Price Range -->
+        <div class="filter-card">
+          <h4 class="filter-heading">
+            <span>Price Range</span>
+            <span id="priceMaxDisplay" style="font-size: 0.85rem; color: var(--primary); font-family: var(--font-sans); font-weight: 700;">₹1,500</span>
+          </h4>
+          <div class="price-slider-wrap">
+            <input type="range" class="price-slider" id="priceRangeSlider" min="200" max="1500" step="50" value="1500" />
+            <div style="display: flex; justify-content: space-between; font-size: 0.78rem; color: var(--text-light);">
+              <span>Min: ₹200</span>
+              <span>Max: ₹1,500</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Filter 3: Customer Rating -->
+        <div class="filter-card">
+          <h4 class="filter-heading">Minimum Rating</h4>
+          <div class="filter-list">
+            <label class="filter-item-label">
+              <input type="radio" name="ratingFilter" value="0" checked />
+              <span>All Ratings</span>
+            </label>
+            <label class="filter-item-label">
+              <input type="radio" name="ratingFilter" value="4.5" />
+              <span>4.5★ &amp; above (Exceptional)</span>
+            </label>
+            <label class="filter-item-label">
+              <input type="radio" name="ratingFilter" value="4.0" />
+              <span>4.0★ &amp; above (Highly Rated)</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Filter 4: Language -->
+        <div class="filter-card">
+          <h4 class="filter-heading">Language</h4>
+          <div class="filter-list" id="filterLanguages">
+            <!-- Injected via filters.js -->
+          </div>
+        </div>
+
+        <!-- Filter 5: Authors -->
+        <div class="filter-card">
+          <h4 class="filter-heading">Authors</h4>
+          <div class="filter-list" id="filterAuthors" style="max-height: 220px; overflow-y: auto;">
+            <!-- Injected via filters.js -->
+          </div>
+        </div>
+      </aside>
+
+      <!-- Main Catalogue Column -->
+      <section class="catalog-main">
+        <!-- Mobile Trigger Bar -->
+        <div class="filter-mobile-bar">
+          <button type="button" class="btn btn-secondary btn-sm" id="openFilterDrawerBtn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/><line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/><line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/><line x1="1" y1="14" x2="7" y2="14"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="17" y1="16" x2="23" y2="16"/></svg>
+            Filter &amp; Refine
+          </button>
+          <div class="results-count-text" id="mobileCountDisplay"></div>
+        </div>
+
+        <!-- Controls Bar -->
+        <div class="catalog-controls-bar">
+          <div class="results-count-text" id="resultsCountDisplay">
+            Loading books...
+          </div>
+
+          <div class="catalog-sort-wrap">
+            <label for="catalogSortSelect" style="font-size: 0.88rem; color: var(--text-muted); font-weight: 500;">Sort By:</label>
+            <select id="catalogSortSelect" class="catalog-sort-select">
+              <option value="relevance">Featured &amp; Bestsellers</option>
+              <option value="price-asc">Price: Low to High</option>
+              <option value="price-desc">Price: High to Low</option>
+              <option value="rating-desc">Customer Rating</option>
+              <option value="newest">New Releases First</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Active Filter Badges -->
+        <div class="active-filters-wrap" id="activeFilterTags"></div>
+
+        <!-- Product Grid -->
+        <div class="book-grid" id="booksGrid">
+          <!-- Book cards injected via filters.js -->
+        </div>
+
+        <!-- Empty State -->
+        <div id="emptyStateMessage" style="display: none; text-align: center; padding: 4rem 1.5rem; background: var(--white); border-radius: var(--radius-lg); border: 1px dashed var(--border-color); margin-top: 1rem;">
+          <div style="font-size: 3rem; margin-bottom: 0.75rem;">🔍</div>
+          <h3 style="font-family: var(--font-serif); font-size: 1.6rem; color: var(--primary-dark); margin-bottom: 0.5rem;">No books match your criteria</h3>
+          <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.5rem; max-width: 460px; margin-left: auto; margin-right: auto;">
+            We couldn't find any books matching your active filters. Try broadening your search or clearing some filters to explore our shelves.
+          </p>
+          <button type="button" class="btn btn-primary" onclick="resetAllFilters()">Clear All Filters</button>
+        </div>
+
+        <!-- Load More Container -->
+        <div id="loadMoreContainer" style="text-align: center; margin-top: 3rem; display: none;">
+          <button type="button" class="btn btn-secondary btn-lg" id="loadMoreBtn">
+            Load More Titles
+          </button>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Injected Shared Footer -->
+  <div id="shared-footer"></div>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/filters.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BookNook — A Cozy Corner for Every Reader | Online Bookstore</title>
+  <meta name="description" content="BookNook is an online neighbourhood bookstore offering curated fiction, non-fiction, children's books, and fine stationery. Enjoy free delivery on orders over ₹499." />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+</head>
+<body>
+
+  <!-- Injected Shared Header -->
+  <div id="shared-header"></div>
+
+  <main>
+    <!-- Hero Banner Section -->
+    <section class="hero-section">
+      <div class="container hero-grid">
+        <div class="hero-content">
+          <div class="hero-badge-tag">
+            <span>✨</span> Autumn 2026 Curated Selection
+          </div>
+          <h1 class="hero-heading">
+            Lose yourself in a world of stories.
+          </h1>
+          <p class="hero-lead">
+            Welcome to BookNook, where discovering your next favourite book feels like a warm afternoon in a sunlit corner of an old bookshop. Handcrafted stationery, literary masterworks, and delightful reads delivered right to your doorstep.
+          </p>
+          <div class="hero-ctas">
+            <a href="books.html" class="btn btn-primary btn-lg">Explore Catalogue &rarr;</a>
+            <a href="books.html?filter=bestsellers" class="btn btn-secondary btn-lg">View Bestsellers</a>
+          </div>
+          <div class="hero-stats">
+            <div>
+              <div class="hero-stat-number">40+</div>
+              <div class="hero-stat-label">Curated Titles</div>
+            </div>
+            <div>
+              <div class="hero-stat-number">20</div>
+              <div class="hero-stat-label">Literary Categories</div>
+            </div>
+            <div>
+              <div class="hero-stat-number">4.8★</div>
+              <div class="hero-stat-label">Customer Love</div>
+            </div>
+            <div>
+              <div class="hero-stat-number">₹499+</div>
+              <div class="hero-stat-label">Free Shipping</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <div class="hero-visual-card">
+            <img src="images/banners/hero-books.svg" alt="Cozy bookstore illustration with books and warm reading chair" class="hero-visual-img" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Key Store Highlights Strip -->
+    <section class="features-strip">
+      <div class="container features-grid">
+        <div class="feature-box">
+          <div class="feature-icon-circle">🚚</div>
+          <div>
+            <div class="feature-title">Free Express Delivery</div>
+            <div class="feature-desc">On all orders above ₹499</div>
+          </div>
+        </div>
+        <div class="feature-box">
+          <div class="feature-icon-circle">🎁</div>
+          <div>
+            <div class="feature-title">Gift Wrapping Available</div>
+            <div class="feature-desc">With personalized bookmark &amp; note</div>
+          </div>
+        </div>
+        <div class="feature-box">
+          <div class="feature-icon-circle">🌱</div>
+          <div>
+            <div class="feature-title">Sustainable Packaging</div>
+            <div class="feature-desc">100% recyclable, zero plastic</div>
+          </div>
+        </div>
+        <div class="feature-box">
+          <div class="feature-icon-circle">🤝</div>
+          <div>
+            <div class="feature-title">Reader Guarantee</div>
+            <div class="feature-desc">Simulated 7-day hassle-free replacement</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Category Tiles Section (Section 7.1) -->
+    <section style="padding: 4.5rem 0 2rem;">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <h2 class="section-title">Explore by Department</h2>
+            <p class="section-subtitle">Delightful shelves stocked with timeless literature and writing essentials</p>
+          </div>
+          <a href="books.html" class="section-view-all">All Departments &rarr;</a>
+        </div>
+
+        <div class="category-tiles-grid">
+          <!-- Tile 1: Fiction -->
+          <div class="category-tile">
+            <div class="tile-icon-circle">📖</div>
+            <h3 class="tile-title">Fiction</h3>
+            <p class="tile-desc">Literary fiction, gripping thrillers, sci-fi adventures, fantasy worlds, and heart-warming romances.</p>
+            <a href="books.html?category=Fiction" class="tile-link">Browse Fiction &rarr;</a>
+          </div>
+
+          <!-- Tile 2: Non-Fiction -->
+          <div class="category-tile">
+            <div class="tile-icon-circle">💡</div>
+            <h3 class="tile-title">Non-Fiction</h3>
+            <p class="tile-desc">Inspiring biographies, self-help classics, world history, cosmos, and sound financial wisdom.</p>
+            <a href="books.html?category=Non-Fiction" class="tile-link">Browse Non-Fiction &rarr;</a>
+          </div>
+
+          <!-- Tile 3: Children's Books -->
+          <div class="category-tile">
+            <div class="tile-icon-circle">🎨</div>
+            <h3 class="tile-title">Children's Books</h3>
+            <p class="tile-desc">Whimsical picture books, bedtime stories, early discovery encyclopedias, and board books.</p>
+            <a href="books.html?category=Children's+Books" class="tile-link">Browse Children's &rarr;</a>
+          </div>
+
+          <!-- Tile 4: Stationery -->
+          <div class="category-tile">
+            <div class="tile-icon-circle">✒️</div>
+            <h3 class="tile-title">Fine Stationery</h3>
+            <p class="tile-desc">Hardbound leather journals, brass fountain pens, archival fineliners, and bibliophile gift hampers.</p>
+            <a href="books.html?category=Stationery" class="tile-link">Browse Stationery &rarr;</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bestsellers Section (Section 7.1) -->
+    <section style="padding: 3rem 0;">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <h2 class="section-title">Bestselling Books</h2>
+            <p class="section-subtitle">Most cherished titles currently flying off our cedar shelves</p>
+          </div>
+          <a href="books.html?filter=bestsellers" class="section-view-all">View All Bestsellers &rarr;</a>
+        </div>
+
+        <div class="book-grid" id="homeBestsellersGrid">
+          <!-- Injected via JavaScript from data.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Reading Quote Banner / Spotlight -->
+    <section style="padding: 2.5rem 0;">
+      <div class="container">
+        <div style="background: linear-gradient(135deg, #1B4332 0%, #2D6A4F 100%); color: var(--cream); border-radius: var(--radius-lg); padding: 3rem; text-align: center; position: relative; overflow: hidden; box-shadow: var(--shadow-md);">
+          <div style="font-size: 2.2rem; margin-bottom: 0.5rem; opacity: 0.8;">❦</div>
+          <blockquote style="font-family: var(--font-serif); font-size: 1.6rem; font-style: italic; max-width: 780px; margin: 0 auto 1.25rem; line-height: 1.4;">
+            "A book is a dream that you hold in your hand. In a good bookstore, you are surrounded by thousands of possibilities waiting to unfold."
+          </blockquote>
+          <cite style="font-size: 0.95rem; font-family: var(--font-sans); color: #D8F3DC; font-style: normal; font-weight: 600;">
+            — Neil Gaiman, Bibliophile &amp; Author
+          </cite>
+          <div style="margin-top: 1.75rem;">
+            <a href="about.html" class="btn btn-secondary btn-sm" style="background: var(--white); color: var(--primary-dark);">Read Our Story &rarr;</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- New Arrivals Section (Section 7.1) -->
+    <section style="padding: 3rem 0 5rem;">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <h2 class="section-title">New Releases &amp; Fresh Arrivals</h2>
+            <p class="section-subtitle">The freshest literary wonders added to the BookNook catalogue</p>
+          </div>
+          <a href="books.html?filter=new" class="section-view-all">View All New Arrivals &rarr;</a>
+        </div>
+
+        <div class="book-grid" id="homeNewArrivalsGrid">
+          <!-- Injected via JavaScript from data.js -->
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Injected Shared Footer -->
+  <div id="shared-footer"></div>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const books = getBooks();
+
+      // Render 4 Bestsellers on Home
+      const bestsellers = books.filter(b => b.isBestseller).slice(0, 4);
+      const bestsellersContainer = document.getElementById('homeBestsellersGrid');
+      if (bestsellersContainer) {
+        bestsellersContainer.innerHTML = bestsellers.map(b => createBookCard(b)).join('');
+      }
+
+      // Render 4 New Arrivals on Home
+      const newArrivals = books.filter(b => b.isNew).slice(0, 4);
+      const newArrivalsContainer = document.getElementById('homeNewArrivalsGrid');
+      if (newArrivalsContainer) {
+        newArrivalsContainer.innerHTML = newArrivals.map(b => createBookCard(b)).join('');
+      }
+    });
+  </script>
+</body>
+</html>
+

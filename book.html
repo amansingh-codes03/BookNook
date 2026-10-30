@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Book Details | BookNook</title>
+  <meta name="description" content="View complete book synopsis, reader reviews, publication specifications, and order online at BookNook." />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+</head>
+<body>
+
+  <!-- Injected Shared Header -->
+  <div id="shared-header"></div>
+
+  <!-- Breadcrumbs -->
+  <div class="breadcrumb-bar">
+    <div class="container">
+      <ul class="breadcrumb-list">
+        <li><a href="index.html">Home</a></li>
+        <li class="breadcrumb-separator">&rsaquo;</li>
+        <li><a href="books.html">Catalogue</a></li>
+        <li class="breadcrumb-separator">&rsaquo;</li>
+        <li id="detailBreadcrumbCategory"><a href="books.html">Category</a></li>
+        <li class="breadcrumb-separator">&rsaquo;</li>
+        <li class="breadcrumb-current" id="detailBreadcrumbTitle">Book Title</li>
+      </ul>
+    </div>
+  </div>
+
+  <main class="container">
+    <div id="bookDetailContent">
+      <div class="detail-layout">
+        <!-- Left: Book Cover & Quick Meta Box -->
+        <div class="detail-left">
+          <div class="detail-cover-sticky">
+            <div class="detail-cover-wrap">
+              <img id="detailCoverImg" src="" alt="Book Cover" class="detail-cover-img" />
+            </div>
+
+            <!-- Metadata Box -->
+            <div class="detail-meta-box">
+              <div>
+                <span class="detail-meta-label">Publisher</span>
+                <span class="detail-meta-val" id="detailPublisher">-</span>
+              </div>
+              <div>
+                <span class="detail-meta-label">Publication Year</span>
+                <span class="detail-meta-val" id="detailYear">-</span>
+              </div>
+              <div>
+                <span class="detail-meta-label">ISBN Number</span>
+                <span class="detail-meta-val" id="detailIsbn">-</span>
+              </div>
+              <div>
+                <span class="detail-meta-label">Page Count</span>
+                <span class="detail-meta-val" id="detailPages">-</span>
+              </div>
+              <div>
+                <span class="detail-meta-label">Language</span>
+                <span class="detail-meta-val" id="detailLanguage">-</span>
+              </div>
+              <div>
+                <span class="detail-meta-label">Format</span>
+                <span class="detail-meta-val">Collector's Edition</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Book Information & Actions -->
+        <div class="detail-right">
+          <div style="margin-bottom: 0.5rem;">
+            <span class="badge badge-bestseller" id="detailBestsellerBadge" style="display: none;">Bestseller</span>
+            <span class="badge badge-new" id="detailNewBadge" style="display: none;">New Arrival</span>
+            <span style="font-size: 0.85rem; color: var(--text-light); font-weight: 600; text-transform: uppercase;" id="detailSubcategory">Category</span>
+          </div>
+
+          <h1 class="detail-title" id="detailTitle">Loading Book...</h1>
+
+          <div class="detail-author">
+            by <a href="#" id="detailAuthorLink" style="font-weight: 700; color: var(--primary);">Author Name</a>
+          </div>
+
+          <div class="detail-rating-row">
+            <div id="detailStars"></div>
+            <span style="font-weight: 700; font-size: 1.1rem; color: var(--primary-dark);" id="detailRatingNumber">0.0</span>
+            <span style="color: var(--text-light); font-size: 0.88rem;" id="detailRatingCount">(0 verified reader reviews)</span>
+          </div>
+
+          <div class="detail-price-box">
+            <span class="detail-price-current" id="detailPriceCurrent">₹0</span>
+            <span class="detail-price-mrp" id="detailPriceMrp"></span>
+            <span class="badge badge-discount" id="detailDiscountBadge" style="display: none;">0% OFF</span>
+          </div>
+
+          <div class="detail-stock-badge" id="detailStockBadge">
+            In Stock &bull; Ready for prompt dispatch
+          </div>
+
+          <!-- Quantity Stepper & CTAs -->
+          <div class="detail-cta-row">
+            <div class="qty-stepper" style="height: 48px;">
+              <button type="button" class="qty-btn" id="qtyMinusBtn" style="width: 44px; height: 44px; font-size: 1.2rem;">&minus;</button>
+              <input type="text" class="qty-input" id="detailQtyInput" value="1" readonly style="width: 48px; font-size: 1rem;" />
+              <button type="button" class="qty-btn" id="qtyPlusBtn" style="width: 44px; height: 44px; font-size: 1.2rem;">&plus;</button>
+            </div>
+
+            <button type="button" class="btn btn-primary btn-lg" id="detailAddToCartBtn">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+              Add to Shopping Cart
+            </button>
+
+            <button type="button" class="btn btn-outline btn-lg" id="detailWishlistBtn">
+              <span id="detailWishlistHeart">♥</span> Add to Wishlist
+            </button>
+          </div>
+
+          <!-- Synopsis / Description -->
+          <div style="background: var(--white); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 2rem; margin-bottom: 2rem;">
+            <h3 class="detail-desc-title">Synopsis &amp; Overview</h3>
+            <p class="detail-desc-text" id="detailDescription">
+              Loading synopsis...
+            </p>
+
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; border-top: 1px solid var(--cream-dark); padding-top: 1.25rem;">
+              <div style="font-size: 0.85rem;">
+                <div style="font-weight: 700; color: var(--primary-dark);">Free Delivery</div>
+                <div style="color: var(--text-light);">On orders ₹499 &amp; above</div>
+              </div>
+              <div style="font-size: 0.85rem;">
+                <div style="font-weight: 700; color: var(--primary-dark);">Gift Wrapping</div>
+                <div style="color: var(--text-light);">Available at checkout</div>
+              </div>
+              <div style="font-size: 0.85rem;">
+                <div style="font-weight: 700; color: var(--primary-dark);">Safe Dispatch</div>
+                <div style="color: var(--text-light);">Packed in moisture-proof boxes</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Customer Reviews & Review Submission Section (Section 7.3 & F11) -->
+      <section class="reviews-section">
+        <div class="section-header">
+          <div>
+            <h2 class="section-title">Reader Reviews &amp; Ratings</h2>
+            <p class="section-subtitle">Read reflections from book lovers or share your own thoughts</p>
+          </div>
+          <button class="btn btn-primary btn-sm" onclick="scrollToReviewForm()">Write a Review</button>
+        </div>
+
+        <div class="reviews-grid">
+          <!-- Overview Card -->
+          <div class="rating-overview-card">
+            <div class="rating-big-num" id="overviewRating">4.8</div>
+            <div id="overviewStars" style="margin-bottom: 0.5rem;"></div>
+            <div style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1.5rem;" id="overviewCountText">Based on verified orders</div>
+
+            <!-- Simulated Rating Bars -->
+            <div style="display: flex; flex-direction: column; gap: 0.4rem; font-size: 0.8rem; text-align: left;">
+              <div style="display: flex; align-items: center; gap: 0.5rem;">
+                <span style="width: 20px;">5★</span>
+                <div style="flex: 1; height: 6px; background: var(--cream-dark); border-radius: 3px; overflow: hidden;">
+                  <div style="width: 82%; height: 100%; background: var(--accent-amber);"></div>
+                </div>
+                <span style="width: 30px; text-align: right; color: var(--text-light);">82%</span>
+              </div>
+              <div style="display: flex; align-items: center; gap: 0.5rem;">
+                <span style="width: 20px;">4★</span>
+                <div style="flex: 1; height: 6px; background: var(--cream-dark); border-radius: 3px; overflow: hidden;">
+                  <div style="width: 14%; height: 100%; background: var(--accent-amber);"></div>
+                </div>
+                <span style="width: 30px; text-align: right; color: var(--text-light);">14%</span>
+              </div>
+              <div style="display: flex; align-items: center; gap: 0.5rem;">
+                <span style="width: 20px;">3★</span>
+                <div style="flex: 1; height: 6px; background: var(--cream-dark); border-radius: 3px; overflow: hidden;">
+                  <div style="width: 3%; height: 100%; background: var(--accent-amber);"></div>
+                </div>
+                <span style="width: 30px; text-align: right; color: var(--text-light);">3%</span>
+              </div>
+              <div style="display: flex; align-items: center; gap: 0.5rem;">
+                <span style="width: 20px;">2★</span>
+                <div style="flex: 1; height: 6px; background: var(--cream-dark); border-radius: 3px; overflow: hidden;">
+                  <div style="width: 1%; height: 100%; background: var(--accent-amber);"></div>
+                </div>
+                <span style="width: 30px; text-align: right; color: var(--text-light);">1%</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Reviews List & Add Review Form -->
+          <div>
+            <div id="reviewsListContainer">
+              <!-- Injected reviews -->
+            </div>
+
+            <!-- Review Submission Form -->
+            <div style="background: var(--white); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 2rem; margin-top: 2rem;" id="reviewFormSection">
+              <h3 style="font-family: var(--font-serif); font-size: 1.35rem; color: var(--primary-dark); margin-bottom: 0.5rem;">Leave a Review</h3>
+              <p style="color: var(--text-light); font-size: 0.88rem; margin-bottom: 1.5rem;">Have you read this book? Help other readers in our community with your critique.</p>
+
+              <form id="addReviewForm">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                  <div class="form-group">
+                    <label class="form-label" for="reviewUserName">Your Name</label>
+                    <input type="text" id="reviewUserName" class="form-input" placeholder="e.g. Priyanshu Sharma" required />
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="reviewRating">Rating</label>
+                    <select id="reviewRating" class="form-select" required>
+                      <option value="5">★★★★★ (5 Stars - Masterpiece)</option>
+                      <option value="4">★★★★☆ (4 Stars - Highly Enjoyed)</option>
+                      <option value="3">★★★☆☆ (3 Stars - Good Read)</option>
+                      <option value="2">★★☆☆☆ (2 Stars - Mediocre)</option>
+                      <option value="1">★☆☆☆☆ (1 Star - Disappointing)</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="reviewComment">Your Thoughts &amp; Review</label>
+                  <textarea id="reviewComment" class="form-textarea" rows="4" placeholder="What moved you in this book? What did you love about the characters, writing, or insights?" required></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Submit Reader Review</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Related Books Section (Section 7.3 & F12) -->
+      <section style="margin: 4rem 0 2rem;">
+        <div class="section-header">
+          <div>
+            <h2 class="section-title">Readers Also Explored</h2>
+            <p class="section-subtitle">Recommended companion titles from similar shelves</p>
+          </div>
+          <a href="books.html" class="section-view-all">Browse More &rarr;</a>
+        </div>
+
+        <div class="book-grid" id="relatedBooksGrid">
+          <!-- Injected via JavaScript -->
+        </div>
+      </section>
+    </div>
+
+    <!-- Error State if book ID not found -->
+    <div id="bookNotFound" style="display: none; text-align: center; padding: 5rem 1.5rem;">
+      <div style="font-size: 3rem; margin-bottom: 1rem;">📖</div>
+      <h2 style="font-family: var(--font-serif); font-size: 2rem; color: var(--primary-dark); margin-bottom: 0.5rem;">Book Not Found</h2>
+      <p style="color: var(--text-muted); margin-bottom: 2rem;">The book you requested does not exist or has been archived.</p>
+      <a href="books.html" class="btn btn-primary">Return to Catalogue &rarr;</a>
+    </div>
+  </main>
+
+  <!-- Injected Shared Footer -->
+  <div id="shared-footer"></div>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const bookId = urlParams.get('id') || 'bn-fic-01'; // Default fallback
+      const book = getBookById(bookId);
+
+      if (!book) {
+        document.getElementById('bookDetailContent').style.display = 'none';
+        document.getElementById('bookNotFound').style.display = 'block';
+        return;
+      }
+
+      // Populate Elements
+      document.title = `${book.title} | BookNook`;
+      document.getElementById('detailBreadcrumbTitle').textContent = book.title;
+      const catBreadcrumb = document.getElementById('detailBreadcrumbCategory');
+      catBreadcrumb.innerHTML = `<a href="books.html?category=${encodeURIComponent(book.category)}">${book.category}</a>`;
+
+      document.getElementById('detailCoverImg').src = book.cover;
+      document.getElementById('detailCoverImg').alt = `Cover of ${book.title}`;
+
+      document.getElementById('detailTitle').textContent = book.title;
+      document.getElementById('detailSubcategory').textContent = `${book.category} • ${book.subCategory}`;
+
+      const authorLink = document.getElementById('detailAuthorLink');
+      authorLink.textContent = book.authorName;
+      authorLink.href = `author.html?id=${book.authorId}`;
+
+      document.getElementById('detailPublisher').textContent = book.publisher || 'BookNook Editions';
+      document.getElementById('detailYear').textContent = book.year || '2024';
+      document.getElementById('detailIsbn').textContent = book.isbn || 'ISBN-978-BN';
+      document.getElementById('detailPages').textContent = `${book.pages} pages`;
+      document.getElementById('detailLanguage').textContent = book.language || 'English';
+
+      document.getElementById('detailDescription').textContent = book.description;
+      document.getElementById('detailPriceCurrent').textContent = formatPrice(book.price);
+
+      if (book.mrp > book.price) {
+        document.getElementById('detailPriceMrp').textContent = formatPrice(book.mrp);
+        const discountBadge = document.getElementById('detailDiscountBadge');
+        const pct = Math.round(((book.mrp - book.price) / book.mrp) * 100);
+        discountBadge.textContent = `${pct}% OFF`;
+        discountBadge.style.display = 'inline-block';
+      }
+
+      if (book.isBestseller) {
+        document.getElementById('detailBestsellerBadge').style.display = 'inline-block';
+      }
+      if (book.isNew) {
+        document.getElementById('detailNewBadge').style.display = 'inline-block';
+      }
+
+      // Rating Stars
+      document.getElementById('detailStars').innerHTML = renderRatingStars(book.rating);
+      document.getElementById('detailRatingNumber').textContent = book.rating;
+      document.getElementById('detailRatingCount').textContent = `(${book.ratingCount || 0} customer reviews)`;
+
+      // Overview
+      document.getElementById('overviewRating').textContent = book.rating;
+      document.getElementById('overviewStars').innerHTML = renderRatingStars(book.rating);
+      document.getElementById('overviewCountText').textContent = `Based on ${book.ratingCount || 0} verified customer reviews`;
+
+      // Wishlist Button state
+      const wishlistBtn = document.getElementById('detailWishlistBtn');
+      const inWishlist = isInWishlist(book.id);
+      if (inWishlist) {
+        wishlistBtn.classList.add('btn-accent');
+        wishlistBtn.innerHTML = `<span>♥</span> In Wishlist`;
+      }
+
+      wishlistBtn.addEventListener('click', () => {
+        const added = toggleWishlist(book.id);
+        if (added) {
+          wishlistBtn.classList.add('btn-accent');
+          wishlistBtn.innerHTML = `<span>♥</span> In Wishlist`;
+        } else {
+          wishlistBtn.classList.remove('btn-accent');
+          wishlistBtn.innerHTML = `<span>♥</span> Add to Wishlist`;
+        }
+      });
+
+      // Quantity selector
+      let qty = 1;
+      const qtyInput = document.getElementById('detailQtyInput');
+      document.getElementById('qtyMinusBtn').addEventListener('click', () => {
+        if (qty > 1) {
+          qty--;
+          qtyInput.value = qty;
+        }
+      });
+      document.getElementById('qtyPlusBtn').addEventListener('click', () => {
+        if (qty < book.stock) {
+          qty++;
+          qtyInput.value = qty;
+        }
+      });
+
+      // Add to cart button
+      document.getElementById('detailAddToCartBtn').addEventListener('click', () => {
+        addToCart(book.id, qty, true);
+      });
+
+      // Render Reviews
+      renderBookReviews(book.id);
+
+      // Handle Review Submission
+      document.getElementById('addReviewForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const userName = document.getElementById('reviewUserName').value.trim();
+        const rating = parseInt(document.getElementById('reviewRating').value, 10);
+        const comment = document.getElementById('reviewComment').value.trim();
+
+        saveReview({
+          bookId: book.id,
+          userName,
+          rating,
+          comment
+        });
+
+        showToast('Thank you! Your review has been published.', 'success');
+        this.reset();
+        renderBookReviews(book.id);
+
+        // Update displayed rating
+        const updatedBook = getBookById(book.id);
+        if (updatedBook) {
+          document.getElementById('detailStars').innerHTML = renderRatingStars(updatedBook.rating);
+          document.getElementById('detailRatingNumber').textContent = updatedBook.rating;
+          document.getElementById('overviewRating').textContent = updatedBook.rating;
+          document.getElementById('overviewStars').innerHTML = renderRatingStars(updatedBook.rating);
+        }
+      });
+
+      // Render Related Books (F12)
+      renderRelatedBooks(book);
+    });
+
+    function renderBookReviews(bookId) {
+      const container = document.getElementById('reviewsListContainer');
+      const reviews = getReviews(bookId);
+
+      if (reviews.length === 0) {
+        container.innerHTML = `
+          <div style="background: var(--white); border: 1px dashed var(--border-color); border-radius: var(--radius-md); padding: 2rem; text-align: center; color: var(--text-muted);">
+            Be the first to review this book! Share your impressions with fellow readers below.
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = reviews.map(r => `
+        <div class="review-item-card">
+          <div class="review-author-row">
+            <div>
+              <div class="review-author-name">${escapeHtml(r.userName)}</div>
+              <div>${renderRatingStars(r.rating)}</div>
+            </div>
+            <div class="review-date">${r.date || 'Recent'}</div>
+          </div>
+          <p class="review-comment">${escapeHtml(r.comment)}</p>
+        </div>
+      `).join('');
+    }
+
+    function renderRelatedBooks(currentBook) {
+      const allBooks = getBooks();
+      // Match by same category or author, exclude current book
+      const related = allBooks
+        .filter(b => b.id !== currentBook.id && (b.category === currentBook.category || b.authorId === currentBook.authorId))
+        .slice(0, 4);
+
+      const grid = document.getElementById('relatedBooksGrid');
+      if (grid && related.length > 0) {
+        grid.innerHTML = related.map(b => createBookCard(b)).join('');
+      }
+    }
+
+    function scrollToReviewForm() {
+      const formEl = document.getElementById('reviewFormSection');
+      if (formEl) {
+        formEl.scrollIntoView({ behavior: 'smooth' });
+        document.getElementById('reviewUserName').focus();
+      }
+    }
+  </script>
+</body>
+</html>
+

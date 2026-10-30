@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us — Our Story &amp; Values | BookNook</title>
+  <meta name="description" content="Discover the origins of BookNook: our passionate team, literary mission, and devotion to cozy reading spaces." />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+  <style>
+    .story-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      align-items: center;
+      gap: 3.5rem;
+      margin: 3.5rem 0;
+    }
+    .story-img-card {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+      border: 1px solid var(--border-color);
+    }
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin: 3rem 0;
+    }
+    .value-card {
+      background: var(--white);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+    }
+    .value-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--primary);
+    }
+    .value-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin: 3rem 0;
+    }
+    .team-card {
+      background: var(--white);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 1.75rem;
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+    }
+    .team-photo-wrap {
+      width: 96px;
+      height: 96px;
+      border-radius: 50%;
+      background: var(--primary-tint);
+      color: var(--primary-dark);
+      font-size: 2.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.25rem;
+      box-shadow: 0 4px 12px rgba(45, 106, 79, 0.2);
+    }
+    @media (max-width: 991px) {
+      .story-grid, .values-grid, .team-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Injected Shared Header -->
+  <div id="shared-header"></div>
+
+  <!-- Breadcrumbs -->
+  <div class="breadcrumb-bar">
+    <div class="container">
+      <ul class="breadcrumb-list">
+        <li><a href="index.html">Home</a></li>
+        <li class="breadcrumb-separator">&rsaquo;</li>
+        <li class="breadcrumb-current">About BookNook</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Page Banner -->
+  <section class="page-header-banner">
+    <div class="container">
+      <h1 class="page-header-title">The BookNook Story</h1>
+      <p class="page-header-subtitle">
+        Born from a passion for quiet afternoons, crisp paper, and the transportive magic of unforgettable books.
+      </p>
+    </div>
+  </section>
+
+  <main class="container">
+    <!-- Store Story Section -->
+    <section class="story-grid">
+      <div>
+        <div style="font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 700; color: var(--primary); margin-bottom: 0.5rem;">
+          Our Humble Origins
+        </div>
+        <h2 style="font-family: var(--font-serif); font-size: 2.2rem; color: var(--primary-dark); line-height: 1.3; margin-bottom: 1.25rem;">
+          Crafting an intellectual haven in a noisy digital world.
+        </h2>
+        <p style="color: var(--text-muted); font-size: 1rem; line-height: 1.7; margin-bottom: 1rem;">
+          BookNook started in autumn 2024 with a simple, resonant belief: the process of discovering a book should be as tender and joyful as curling up with one on a rainy Sunday afternoon.
+        </p>
+        <p style="color: var(--text-muted); font-size: 1rem; line-height: 1.7; margin-bottom: 1.5rem;">
+          While modern e-commerce sites grew impersonal, cold, and transactional, we set out to build an online neighbourhood bookstore. A place where book lovers can browse carefully curated editions across 20 distinct genres, discover thoughtful author backstories, and find heirloom stationery crafted to make writing feel sacred again.
+        </p>
+        <div style="display: flex; gap: 1rem;">
+          <a href="books.html" class="btn btn-primary">Browse Our Shelves &rarr;</a>
+          <a href="contact.html" class="btn btn-outline">Visit Our Shop</a>
+        </div>
+      </div>
+
+      <div class="story-img-card">
+        <img src="images/banners/hero-books.svg" alt="BookNook cozy reading illustration" style="width: 100%; height: auto; display: block;" />
+      </div>
+    </section>
+
+    <!-- Mission & Core Values Section -->
+    <section style="margin: 4.5rem 0;">
+      <div class="section-header" style="text-align: center; display: block;">
+        <h2 class="section-title" style="display: inline-block;">Our Three Core Values</h2>
+        <p class="section-subtitle">How we curate, pack, and care for every book lover</p>
+      </div>
+
+      <div class="values-grid">
+        <div class="value-card">
+          <div class="value-icon">🔍</div>
+          <h3 style="font-family: var(--font-serif); font-size: 1.35rem; color: var(--primary-dark); margin-bottom: 0.6rem;">Human Curation</h3>
+          <p style="color: var(--text-muted); font-size: 0.92rem; line-height: 1.6;">
+            We don't use soulless auto-algorithms. Every volume on our shelves is hand-vetted by passionate bibliophiles who read cover to cover.
+          </p>
+        </div>
+
+        <div class="value-card">
+          <div class="value-icon">🌿</div>
+          <h3 style="font-family: var(--font-serif); font-size: 1.35rem; color: var(--primary-dark); margin-bottom: 0.6rem;">Sustainable Care</h3>
+          <p style="color: var(--text-muted); font-size: 0.92rem; line-height: 1.6;">
+            Every parcel is cushioned in biodegradable honeycomb paper and shipped in 100% plastic-free recycled cardboard boxes.
+          </p>
+        </div>
+
+        <div class="value-card">
+          <div class="value-icon">🎁</div>
+          <h3 style="font-family: var(--font-serif); font-size: 1.35rem; color: var(--primary-dark); margin-bottom: 0.6rem;">The Reader's Joy</h3>
+          <p style="color: var(--text-muted); font-size: 0.92rem; line-height: 1.6;">
+            From complimentary brass bookmarks to personalized wax-sealed gift notes, we treat unboxing as part of the reading ritual.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Team Section -->
+    <section style="margin: 4.5rem 0 5rem;">
+      <div class="section-header">
+        <div>
+          <h2 class="section-title">Meet Our Bookish Curators</h2>
+          <p class="section-subtitle">The literary lovers behind the shelves and stationery atelier</p>
+        </div>
+      </div>
+
+      <div class="team-grid">
+        <!-- Team Member 1 -->
+        <div class="team-card">
+          <div class="team-photo-wrap">📚</div>
+          <h4 style="font-family: var(--font-serif); font-size: 1.25rem; color: var(--primary-dark); margin-bottom: 0.2rem;">Aarav Menon</h4>
+          <div style="font-size: 0.82rem; font-weight: 700; color: var(--primary); text-transform: uppercase; margin-bottom: 0.75rem;">Founder &amp; Head Curator</div>
+          <p style="color: var(--text-muted); font-size: 0.88rem; line-height: 1.5;">
+            Former literature professor and lifelong collector of vintage fantasy editions and mid-century modern essays.
+          </p>
+        </div>
+
+        <!-- Team Member 2 -->
+        <div class="team-card">
+          <div class="team-photo-wrap">✒️</div>
+          <h4 style="font-family: var(--font-serif); font-size: 1.25rem; color: var(--primary-dark); margin-bottom: 0.2rem;">Tara Deshmukh</h4>
+          <div style="font-size: 0.82rem; font-weight: 700; color: var(--primary); text-transform: uppercase; margin-bottom: 0.75rem;">Stationery Designer &amp; Artisan</div>
+          <p style="color: var(--text-muted); font-size: 0.88rem; line-height: 1.5;">
+            Paper conservator with 12 years of bookbinding expertise; curates our brass accessories and cotton journals.
+          </p>
+        </div>
+
+        <!-- Team Member 3 -->
+        <div class="team-card">
+          <div class="team-photo-wrap">✨</div>
+          <h4 style="font-family: var(--font-serif); font-size: 1.25rem; color: var(--primary-dark); margin-bottom: 0.2rem;">Nandita Sen</h4>
+          <div style="font-size: 0.82rem; font-weight: 700; color: var(--primary); text-transform: uppercase; margin-bottom: 0.75rem;">Children's &amp; YA Specialist</div>
+          <p style="color: var(--text-muted); font-size: 0.88rem; line-height: 1.5;">
+            Passionate storyteller committed to sparking lifelong reading habits in young explorers and junior artists.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Injected Shared Footer -->
+  <div id="shared-footer"></div>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
+

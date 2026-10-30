@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Reader Account | BookNook</title>
+  <meta name="description" content="Manage your orders, profile details, delivery addresses, and saved wishlist at BookNook." />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+</head>
+<body>
+
+  <!-- Injected Shared Header -->
+  <div id="shared-header"></div>
+
+  <!-- Breadcrumbs -->
+  <div class="breadcrumb-bar">
+    <div class="container">
+      <ul class="breadcrumb-list">
+        <li><a href="index.html">Home</a></li>
+        <li class="breadcrumb-separator">&rsaquo;</li>
+        <li class="breadcrumb-current">My Account</li>
+      </ul>
+    </div>
+  </div>
+
+  <main class="container">
+    <div class="account-layout">
+      <!-- Left: Navigation Sidebar -->
+      <aside>
+        <div class="account-nav-card">
+          <div class="account-user-brief">
+            <div class="account-avatar">📖</div>
+            <h3 style="font-family: var(--font-serif); font-size: 1.25rem; color: var(--primary-dark);" id="accountUserName">Reader</h3>
+            <p style="font-size: 0.82rem; color: var(--text-light);" id="accountUserEmail">reader@booknook.in</p>
+          </div>
+
+          <nav>
+            <button type="button" class="account-nav-btn active" data-tab="orders">
+              <span>📦</span> Order History &amp; Tracking
+            </button>
+            <button type="button" class="account-nav-btn" data-tab="wishlist">
+              <span>♥</span> Saved Wishlist
+            </button>
+            <button type="button" class="account-nav-btn" data-tab="addresses">
+              <span>📍</span> Saved Addresses
+            </button>
+            <button type="button" class="account-nav-btn" data-tab="profile">
+              <span>👤</span> Profile Details
+            </button>
+            <button type="button" class="account-nav-btn" onclick="logoutUser()" style="color: var(--danger); margin-top: 1rem; border-top: 1px solid var(--cream-dark); padding-top: 1rem;">
+              <span>🚪</span> Sign Out
+            </button>
+          </nav>
+        </div>
+      </aside>
+
+      <!-- Right: Tab Panels -->
+      <section>
+        <!-- Tab 1: Orders -->
+        <div class="account-tab-panel active" id="tab-orders">
+          <div class="section-header">
+            <div>
+              <h2 class="section-title">Order History</h2>
+              <p class="section-subtitle">Track parcel progress, view receipts, and review past literary acquisitions</p>
+            </div>
+          </div>
+          <div id="accountOrdersList">
+            <!-- Injected via account.js -->
+          </div>
+        </div>
+
+        <!-- Tab 2: Wishlist -->
+        <div class="account-tab-panel" id="tab-wishlist">
+          <div class="section-header">
+            <div>
+              <h2 class="section-title">My Wishlist</h2>
+              <p class="section-subtitle">Cherished books you are planning to read next</p>
+            </div>
+          </div>
+          <div class="book-grid" id="accountWishlistGrid">
+            <!-- Injected via account.js -->
+          </div>
+        </div>
+
+        <!-- Tab 3: Saved Addresses -->
+        <div class="account-tab-panel" id="tab-addresses">
+          <div class="section-header">
+            <div>
+              <h2 class="section-title">Delivery Addresses</h2>
+              <p class="section-subtitle">Manage where your book packages and stationery parcels are dispatched</p>
+            </div>
+            <button class="btn btn-primary btn-sm" onclick="openAddressModal()">+ Add Address</button>
+          </div>
+          <div class="addresses-grid" id="accountAddressList">
+            <!-- Injected via account.js -->
+          </div>
+        </div>
+
+        <!-- Tab 4: Profile Details -->
+        <div class="account-tab-panel" id="tab-profile">
+          <div class="section-header">
+            <div>
+              <h2 class="section-title">Personal Profile</h2>
+              <p class="section-subtitle">Update your personal account credentials and contact details</p>
+            </div>
+          </div>
+          <div style="background: var(--white); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 2rem;">
+            <form id="profileForm">
+              <div class="form-group">
+                <label class="form-label" for="profileName">Full Name</label>
+                <input type="text" id="profileName" class="form-input" required />
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="profileEmail">Email Address (Read-only)</label>
+                <input type="email" id="profileEmail" class="form-input" disabled style="background: var(--cream); cursor: not-allowed;" />
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="profilePhone">Phone Number</label>
+                <input type="tel" id="profilePhone" class="form-input" placeholder="+91 98765 43210" />
+              </div>
+              <button type="submit" class="btn btn-primary">Save Profile Changes</button>
+            </form>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Track Order Timeline Modal (PRD F15) -->
+    <div class="modal-overlay" id="trackOrderModal">
+      <div class="modal-card">
+        <div class="modal-header">
+          <h3 class="modal-title">Order Status</h3>
+          <button class="modal-close" aria-label="Close modal">&times;</button>
+        </div>
+        <div class="modal-body" id="trackOrderBody">
+          <!-- Injected via account.js -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Add/Edit Address Modal -->
+    <div class="modal-overlay" id="addressModal">
+      <div class="modal-card">
+        <div class="modal-header">
+          <h3 class="modal-title" id="addressModalTitle">Add New Address</h3>
+          <button class="modal-close" aria-label="Close modal">&times;</button>
+        </div>
+        <form onsubmit="saveAddressFromModal(event)">
+          <div class="modal-body">
+            <input type="hidden" id="modalAddrId" />
+            <div class="form-group">
+              <label class="form-label" for="modalAddrName">Recipient Name</label>
+              <input type="text" id="modalAddrName" class="form-input" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="modalAddrPhone">Phone Number</label>
+              <input type="tel" id="modalAddrPhone" class="form-input" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="modalAddrStreet">Street Address &amp; House Number</label>
+              <input type="text" id="modalAddrStreet" class="form-input" required />
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+              <div class="form-group">
+                <label class="form-label" for="modalAddrCity">City</label>
+                <input type="text" id="modalAddrCity" class="form-input" required />
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="modalAddrState">State</label>
+                <input type="text" id="modalAddrState" class="form-input" required />
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="modalAddrPin">PIN Code</label>
+              <input type="text" id="modalAddrPin" class="form-input" required />
+            </div>
+            <div class="form-group">
+              <label style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.88rem; cursor: pointer;">
+                <input type="checkbox" id="modalAddrDefault" />
+                <span>Set as default delivery address</span>
+              </label>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline modal-cancel-btn">Cancel</button>
+            <button type="submit" class="btn btn-primary">Save Address</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <!-- Injected Shared Footer -->
+  <div id="shared-footer"></div>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/account.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Author Spotlight | BookNook</title>
+  <meta name="description" content="Explore author biographies, interviews, and their complete bibliographic works available at BookNook." />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+  <style>
+    .author-banner-card {
+      background: var(--white);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 3rem;
+      margin: 3rem 0;
+      display: flex;
+      align-items: center;
+      gap: 3rem;
+      box-shadow: var(--shadow-md);
+    }
+    .author-portrait-wrap {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      overflow: hidden;
+      flex-shrink: 0;
+      border: 4px solid var(--primary-tint);
+      box-shadow: var(--shadow-book);
+    }
+    .author-portrait-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .author-name-title {
+      font-size: 2.5rem;
+      color: var(--primary-dark);
+      margin-bottom: 0.5rem;
+    }
+    .author-meta-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--cream);
+      padding: 0.35rem 0.85rem;
+      border-radius: var(--radius-pill);
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-bottom: 1.25rem;
+    }
+    .author-bio-text {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      max-width: 760px;
+    }
+    @media (max-width: 768px) {
+      .author-banner-card {
+        flex-direction: column;
+        text-align: center;
+        padding: 2rem 1.5rem;
+        gap: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Injected Shared Header -->
+  <div id="shared-header"></div>
+
+  <!-- Breadcrumbs -->
+  <div class="breadcrumb-bar">
+    <div class="container">
+      <ul class="breadcrumb-list">
+        <li><a href="index.html">Home</a></li>
+        <li class="breadcrumb-separator">&rsaquo;</li>
+        <li><a href="books.html">Catalogue</a></li>
+        <li class="breadcrumb-separator">&rsaquo;</li>
+        <li class="breadcrumb-current" id="authorBreadcrumbName">Author</li>
+      </ul>
+    </div>
+  </div>
+
+  <main class="container">
+    <div id="authorContent">
+      <!-- Author Profile Banner -->
+      <section class="author-banner-card">
+        <div class="author-portrait-wrap">
+          <img id="authorPhoto" src="" alt="Author Portrait" class="author-portrait-img" />
+        </div>
+        <div>
+          <div class="author-meta-pill" id="authorOriginPill">
+            <span>🌍</span> <span id="authorCountryBorn">World</span>
+          </div>
+          <h1 class="author-name-title" id="authorName">Author Name</h1>
+          <p class="author-bio-text" id="authorBio">
+            Loading author biography...
+          </p>
+        </div>
+      </section>
+
+      <!-- Books by this Author -->
+      <section style="margin-bottom: 5rem;">
+        <div class="section-header">
+          <div>
+            <h2 class="section-title">Works by <span id="authorWorksTitle">This Author</span></h2>
+            <p class="section-subtitle">Editions available on BookNook shelves</p>
+          </div>
+        </div>
+
+        <div class="book-grid" id="authorBooksGrid">
+          <!-- Injected via script -->
+        </div>
+      </section>
+    </div>
+
+    <!-- Author Not Found -->
+    <div id="authorNotFound" style="display: none; text-align: center; padding: 5rem 1.5rem;">
+      <div style="font-size: 3rem; margin-bottom: 1rem;">✍️</div>
+      <h2 style="font-family: var(--font-serif); font-size: 2rem; color: var(--primary-dark); margin-bottom: 0.5rem;">Author Profile Not Found</h2>
+      <p style="color: var(--text-muted); margin-bottom: 2rem;">We could not locate this author's bibliographic record.</p>
+      <a href="books.html" class="btn btn-primary">Browse All Books &rarr;</a>
+    </div>
+  </main>
+
+  <!-- Injected Shared Footer -->
+  <div id="shared-footer"></div>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const authorId = urlParams.get('id') || 'auth-matt-haig';
+      const author = getAuthorById(authorId);
+
+      if (!author) {
+        document.getElementById('authorContent').style.display = 'none';
+        document.getElementById('authorNotFound').style.display = 'block';
+        return;
+      }
+
+      document.title = `${author.name} — Author Profile | BookNook`;
+      document.getElementById('authorBreadcrumbName').textContent = author.name;
+      document.getElementById('authorPhoto').src = author.photo;
+      document.getElementById('authorPhoto').alt = author.name;
+      document.getElementById('authorName').textContent = author.name;
+      document.getElementById('authorWorksTitle').textContent = author.name;
+      document.getElementById('authorBio').textContent = author.bio;
+
+      if (author.country) {
+        document.getElementById('authorCountryBorn').textContent = `${author.country} • Born ${author.born || ''}`;
+      }
+
+      // Fetch all books written by this author or matching authorId/authorName
+      const allBooks = getBooks();
+      const authorBooks = allBooks.filter(b => b.authorId === author.id || b.authorName.toLowerCase() === author.name.toLowerCase());
+
+      const grid = document.getElementById('authorBooksGrid');
+      if (grid) {
+        if (authorBooks.length > 0) {
+          grid.innerHTML = authorBooks.map(b => createBookCard(b)).join('');
+        } else {
+          grid.innerHTML = `
+            <div style="grid-column: 1 / -1; text-align: center; padding: 2rem; color: var(--text-muted);">
+              Currently, there are no other titles in stock for this author.
+            </div>
+          `;
+        }
+      }
+    });
+  </script>
+</body>
+</html>
+

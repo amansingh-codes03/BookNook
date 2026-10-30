@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shopping Cart | BookNook</title>
+  <meta name="description" content="Review your selected books, configure gift wrapping, and proceed to checkout at BookNook." />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+</head>
+<body>
+
+  <!-- Injected Shared Header -->
+  <div id="shared-header"></div>
+
+  <!-- Breadcrumbs -->
+  <div class="breadcrumb-bar">
+    <div class="container">
+      <ul class="breadcrumb-list">
+        <li><a href="index.html">Home</a></li>
+        <li class="breadcrumb-separator">&rsaquo;</li>
+        <li class="breadcrumb-current">Shopping Cart</li>
+      </ul>
+    </div>
+  </div>
+
+  <main class="container">
+    <div style="margin: 2.5rem 0 1rem;">
+      <h1 style="font-family: var(--font-serif); font-size: 2.4rem; color: var(--primary-dark);">Your Reading Cart</h1>
+      <p style="color: var(--text-muted); font-size: 0.95rem;">Review your selected books, add gift wrapping, or proceed to secure delivery.</p>
+    </div>
+
+    <!-- Empty Cart State -->
+    <div id="cartEmptyState" style="display: none; text-align: center; padding: 5rem 1.5rem; background: var(--white); border-radius: var(--radius-lg); border: 1px dashed var(--border-color); margin: 2rem 0 4rem;">
+      <div style="font-size: 4rem; margin-bottom: 1rem;">🛒</div>
+      <h2 style="font-family: var(--font-serif); font-size: 1.8rem; color: var(--primary-dark); margin-bottom: 0.5rem;">Your Cart is Quiet and Empty</h2>
+      <p style="color: var(--text-muted); font-size: 1rem; max-width: 480px; margin: 0 auto 2rem;">
+        Looks like you haven't added any books or stationery yet. Our shelves are filled with delightful stories waiting for you!
+      </p>
+      <a href="books.html" class="btn btn-primary btn-lg">Explore Book Shelves &rarr;</a>
+    </div>
+
+    <!-- Main Cart Layout -->
+    <div class="cart-layout" id="cartMainContent">
+      <!-- Left: Cart Items List -->
+      <div>
+        <div class="cart-table-card">
+          <div class="cart-table-header">
+            <div>Item Description</div>
+            <div>Unit Price</div>
+            <div>Quantity</div>
+            <div>Line Total</div>
+          </div>
+          <div id="cartItemsList">
+            <!-- Injected via cart.js -->
+          </div>
+        </div>
+
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1.5rem; flex-wrap: wrap; gap: 1rem;">
+          <a href="books.html" class="btn btn-outline">
+            &larr; Continue Exploring Books
+          </a>
+          <button type="button" class="btn btn-outline" onclick="clearCart(); location.reload();" style="color: var(--danger);">
+            Clear Entire Cart
+          </button>
+        </div>
+      </div>
+
+      <!-- Right: Summary & Gift Wrapping -->
+      <aside>
+        <div class="order-summary-card">
+          <h3 class="summary-title">Order Summary</h3>
+
+          <!-- Free Shipping Alert & Progress -->
+          <div id="freeShippingAlert"></div>
+
+          <!-- Gift Wrapping Option (PRD F14 & 7.4) -->
+          <div class="gift-wrap-card">
+            <label class="gift-wrap-header">
+              <input type="checkbox" id="cartGiftWrapCheck" />
+              <div>
+                <div style="font-weight: 700; color: #92400E; font-size: 0.92rem;">🎁 Add Deluxe Gift Wrapping (+₹40)</div>
+                <div style="font-size: 0.8rem; color: #78350F; margin-top: 0.2rem;">
+                  Hand-wrapped in artisanal kraft paper with sage satin ribbon &amp; wax seal.
+                </div>
+              </div>
+            </label>
+
+            <div id="giftMessageBox" style="display: none; margin-top: 0.75rem;">
+              <label for="giftMessageInput" style="display: block; font-size: 0.78rem; font-weight: 700; color: #92400E; margin-bottom: 0.3rem;">
+                Custom Handwritten Message:
+              </label>
+              <textarea id="giftMessageInput" class="form-textarea" rows="2" placeholder="Write a warm note for the recipient..."></textarea>
+            </div>
+          </div>
+
+          <!-- Financial Breakdown -->
+          <div class="summary-row">
+            <span>Books Subtotal:</span>
+            <span id="summarySubtotal" style="font-weight: 600;">₹0</span>
+          </div>
+
+          <div class="summary-row">
+            <span>Estimated Shipping:</span>
+            <span id="summaryShipping">₹50</span>
+          </div>
+
+          <div class="summary-row">
+            <span>Taxes (GST 5%):</span>
+            <span id="summaryTax">₹0</span>
+          </div>
+
+          <div class="summary-row" id="summaryGiftWrapRow" style="display: none;">
+            <span>Gift Wrapping Fee:</span>
+            <span id="summaryGiftWrap">₹40</span>
+          </div>
+
+          <div class="summary-total-row">
+            <span>Grand Total:</span>
+            <span id="summaryTotal">₹0</span>
+          </div>
+
+          <div style="margin-top: 1.5rem;">
+            <a href="checkout.html" class="btn btn-primary btn-block btn-lg" style="box-shadow: 0 4px 14px rgba(45, 106, 79, 0.35);">
+              Proceed to Checkout &rarr;
+            </a>
+          </div>
+
+          <div style="margin-top: 1.25rem; font-size: 0.78rem; color: var(--text-light); text-align: center; display: flex; align-items: center; justify-content: center; gap: 0.4rem;">
+            <span>🔒</span> Simulated Secure Checkout with 100% Buyer Protection
+          </div>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <!-- Injected Shared Footer -->
+  <div id="shared-footer"></div>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/cart.js"></script>
+</body>
+</html>
+
